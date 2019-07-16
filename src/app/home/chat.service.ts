@@ -18,4 +18,18 @@ export class ChatService {
         catchError(() => of('Error, could not load joke :-('))
       );
   }
+
+  /**
+   * Post a new message
+   * @param message text of message
+   * @param username name of user
+   */
+  postMessage(message: string = 'test', username: string = 'test'): Observable<any> {
+    return this.httpClient.post('/message', {
+      email: 'test@test.com',
+      username,
+      group: 'general',
+      message
+    });
+  }
 }

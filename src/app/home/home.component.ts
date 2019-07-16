@@ -30,4 +30,10 @@ export class HomeComponent implements OnInit {
         this.history = messages;
       });
   }
+
+  postMessage() {
+    this.chatService.postMessage().subscribe(id => {
+      console.log('created id of message: ', id);
+    });
+  }
 }

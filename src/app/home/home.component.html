@@ -10,5 +10,7 @@
     <div *ngFor="let message of history">
       {{ message | json }}
     </div>
+
+    <button (click)="postMessage()">Post ME!</button>
   </div>
 </div>
