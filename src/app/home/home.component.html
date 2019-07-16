@@ -7,10 +7,13 @@
     <app-loader [isLoading]="isLoading"></app-loader>
     <q [hidden]="isLoading">{{ quote }}</q>
 
-    <div *ngFor="let message of history">
-      {{ message | json }}
+    <div class="form form--chat" *ngFor="let whatever of holder">
+      {{ whatever.userid }}
+      {{ whatever.text }}
     </div>
 
     <button (click)="postMessage()">Post ME!</button>
+    <input [(ngModel)]="inputVar" (keyup.enter)="helloThere()" />
+    <button (click)="helloThere()">Send</button>
   </div>
 </div>

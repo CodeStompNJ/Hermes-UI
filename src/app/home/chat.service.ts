@@ -7,6 +7,21 @@ import { map, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ChatService {
+  messageData: any = [
+    {
+      text: 'test message',
+      id: 1,
+      chatroomid: 1,
+      userid: 'jbond'
+    },
+    {
+      text: '2 teste',
+      id: 2,
+      chatroomid: 1,
+      userid: 'Dennis'
+    }
+  ];
+
   constructor(private httpClient: HttpClient) {}
 
   getHistory(): Observable<any> {
@@ -31,5 +46,9 @@ export class ChatService {
       group: 'general',
       message
     });
+  }
+
+  getMessageData(): Observable<any> {
+    return of(this.messageData);
   }
 }

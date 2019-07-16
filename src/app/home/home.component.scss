@@ -7,3 +7,14 @@ q {
   font-size: 1.2rem;
   quotes: "« " " »";
 }
+
+.form--chat {
+  flex-wrap: wrap;
+  background-color: aqua;
+  text-align: left;
+  outline: 2px dashed blue;
+}
+
+.form--interface {
+  background-color: mediumaquamarine;
+}

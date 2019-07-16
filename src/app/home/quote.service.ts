@@ -27,4 +27,14 @@ export class QuoteService {
         catchError(() => of('Error, could not load joke :-('))
       );
   }
+
+  getMessages(context: RandomQuoteContext): Observable<string> {
+    return this.httpClient
+      .cache()
+      .get('/api/history')
+      .pipe(
+        map((body: any) => body.data),
+        catchError(() => of('Error, could not load joke :-('))
+      );
+  }
 }
