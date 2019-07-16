@@ -31,7 +31,7 @@ export class QuoteService {
   getMessages(context: RandomQuoteContext): Observable<string> {
     return this.httpClient
       .cache()
-      .get('/api/history')
+      .get('/history')
       .pipe(
         map((body: any) => body.data),
         catchError(() => of('Error, could not load joke :-('))
