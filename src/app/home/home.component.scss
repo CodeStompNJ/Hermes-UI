@@ -8,13 +8,40 @@ q {
   quotes: "« " " »";
 }
 
-.form--chat {
+.form {
+  outline: 2px dashed red;
+  position: relative;
+  display: flex;
+}
+
+.form--window {
+  background-color: #eaeaea;
+  display: block;
+  overflow: auto;
+  scroll-behavior: smooth;
+  outline: 2px dashed green;
+  flex: 1;
+  height: 360px;
+}
+
+.form--message {
+  display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
+  overflow: hidden;
   background-color: aqua;
   text-align: left;
   outline: 2px dashed blue;
+  flex-grow: 1;
 }
 
 .form--interface {
   background-color: mediumaquamarine;
+}
+
+.form--input {
+  position: fixed;
+  width: 50%;
+  bottom: 10px;
+  border: 3px solid #8ac007;
 }
