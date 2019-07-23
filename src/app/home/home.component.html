@@ -1,15 +1,23 @@
 <div class="container-fluid">
   <div class="form text-center">
     <div class=" form form--window">
-      <div class="form form--message" *ngFor="let whatever of holder">
-        {{ whatever.userid }}
-        {{ whatever.text }}
+      <div class="form form--message" *ngFor="let message of history">
+        <div class="form form__uid">
+          {{ message.UserID }}
+        </div>
+        <div class="form form__text">
+          {{ message.Text }}
+        </div>
       </div>
     </div>
     <div class="form form--input">
-      <button (click)="postMessage()">Post ME!</button>
-      <input [(ngModel)]="inputVar" (keyup.enter)="helloThere()" />
-      <button (click)="helloThere()">Send</button>
+      <textarea
+        class="form form__textInput"
+        [(ngModel)]="inputVar"
+        (keyup.enter)="postMessage(inputVar)"
+        autofocus
+      ></textarea>
+      <button class="form form__buttonInput" (click)="postMessage(inputVar)">Send</button>
     </div>
   </div>
 </div>

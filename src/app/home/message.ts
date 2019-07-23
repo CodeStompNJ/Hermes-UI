@@ -1,13 +1,13 @@
 export class Message {
-  text: string;
-  id: number;
-  chatroomid: number;
-  userid: string;
+  Text: string;
+  ID: number;
+  ChatroomID: number;
+  UserID: string;
 
   constructor(id: number, text: string, chatroomid: number, userid: string) {
-    this.text = text;
-    this.id = id;
-    this.chatroomid = chatroomid;
-    this.userid = userid;
+    this.Text = text;
+    this.ID = id;
+    this.ChatroomID = chatroomid;
+    this.UserID = userid;
   }
 }

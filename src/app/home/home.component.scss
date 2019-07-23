@@ -9,7 +9,6 @@ q {
 }
 
 .form {
-  outline: 2px dashed red;
   position: relative;
   display: flex;
 }
@@ -44,4 +43,15 @@ q {
   width: 50%;
   bottom: 10px;
   border: 3px solid #8ac007;
+}
+
+.form__buttonInput {
+  width: 10%;
+  border: 3px dashed blue;
+}
+
+.form__textInput {
+  width: 90%;
+  border: 3px dashed red;
+  resize: none;
 }

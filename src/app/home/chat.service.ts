@@ -7,30 +7,16 @@ import { map, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ChatService {
-  messageData: any = [
-    {
-      text: 'test message',
-      id: 1,
-      chatroomid: 1,
-      userid: 'jbond'
-    },
-    {
-      text: '2 teste',
-      id: 2,
-      chatroomid: 1,
-      userid: 'Dennis'
-    }
-  ];
-
   constructor(private httpClient: HttpClient) {}
 
   getHistory(): Observable<any> {
+    // returns object Object
     return this.httpClient
       .cache()
       .get('/history')
       .pipe(
         map((body: any) => body), // @TODO: convert to message obect here
-        catchError(() => of('Error, could not load joke :-('))
+        catchError(() => of('Error, could not load history :-('))
       );
   }
 
@@ -38,18 +24,15 @@ export class ChatService {
    * Post a new message
    * @param message text of message
    * @param username name of user
+   * Right now the data being sent to server is hardcoded
    */
 
-  postMessage(message: string = 'test', username: string = 'test'): Observable<any> {
+  postMessage(message: string, username: string = 'test'): Observable<any> {
     return this.httpClient.post('/message', {
       email: 'test@test.com',
       username,
       group: 'general',
       message
     });
-  }
-
-  getMessageData(): Observable<any> {
-    return of(this.messageData);
   }
 }
