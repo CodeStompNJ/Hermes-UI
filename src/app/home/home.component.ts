@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
    */
 
   messagePush(sample: string) {
-    //create a new message
+    // create a new message
     const message = new Message(1, this.inputVar, 1, 'User');
     this.history.push(message);
 
@@ -57,6 +57,7 @@ export class HomeComponent implements OnInit {
    * @param message text value entered from UI
    * Will need to send other user data but may be done somewhere else
    * thinking to set user values based on login session and pull frmo there
+   * can use inputVar instead of passing in message maybe?
    */
 
   postMessage(message: string) {

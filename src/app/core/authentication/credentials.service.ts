@@ -6,6 +6,7 @@ export interface Credentials {
   token: string;
 }
 
+// Decide whether or not to make this different value than token, is it different?
 const credentialsKey = 'credentials';
 
 /**
