@@ -35,10 +35,14 @@ export class AuthenticationService {
     // for now just use a hardcoded tolken
     // have function return a token we got from the backend by subscribing to backend
 
+    console.log('QOOQ ' + context.password);
+
     const data = {
       username: context.username,
-      token: '123456'
+      password: context.password,
+      token: '123456' // dont think we'll assign this until after login
     };
+
     this.credentialsService.setCredentials(data, context.remember);
     return of(data);
   }
@@ -52,6 +56,13 @@ export class AuthenticationService {
     // wipe from sessionStorage
     this.credentialsService.setCredentials();
     return of(true);
+  }
+
+  sendCredUsername(context: LoginContext) {
+    return context.username;
+  }
+  sendCredPassword(context: LoginContext) {
+    return context.password;
   }
 
   // need new backend http request that will take these values and authenticate
