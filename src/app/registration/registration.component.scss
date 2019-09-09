@@ -1,0 +1,12 @@
+@import "src/theme/theme-variables";
+@import "~bootstrap/scss/mixins/_breakpoints";
+
+.register_container {
+  background-color: #eaeaea;
+  display: block;
+  overflow: auto;
+  scroll-behavior: smooth;
+  outline: 2px dashed green;
+  flex: 1;
+  height: 360px;
+}
