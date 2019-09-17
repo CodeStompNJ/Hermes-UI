@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
@@ -13,7 +13,8 @@ const log = new Logger('App');
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./app.component.scss', '../../node_modules/ngx-toastr/toastr.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
   constructor(
