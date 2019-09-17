@@ -22,8 +22,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     // const json = JSON.stringify(this.chatService.getHistory());
 
-    // console.log('heck ME' + json);
-
     this.isLoading = true;
     this.chatService
       .getHistory()

@@ -7,6 +7,8 @@ import { CoreModule } from '@app/core';
 import { SharedModule } from '@app/shared';
 import { RegistrationRoutingModule } from './registration-routing.module';
 import { RegistrationComponent } from './registration.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports: [
@@ -16,7 +18,9 @@ import { RegistrationComponent } from './registration.component';
     SharedModule,
     RegistrationRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule
   ],
   declarations: [RegistrationComponent]
 })

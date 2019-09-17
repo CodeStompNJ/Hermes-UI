@@ -20,7 +20,7 @@
     "generate": "ng generate"
   },
   "dependencies": {
-    "@angular/animations": "^8.1.0",
+    "@angular/animations": "^8.2.6",
     "@angular/common": "^8.1.0",
     "@angular/compiler": "^8.1.0",
     "@angular/core": "^8.1.0",
@@ -28,11 +28,12 @@
     "@angular/platform-browser": "^8.1.0",
     "@angular/platform-browser-dynamic": "^8.1.0",
     "@angular/router": "^8.1.0",
-    "@ngx-translate/core": "^11.0.1",
     "@angular/service-worker": "^8.1.0",
-    "@ng-bootstrap/ng-bootstrap": "^5.0.0-rc.1",
-    "bootstrap": "^4.1.1",
     "@fortawesome/fontawesome-free": "^5.1.0",
+    "@ng-bootstrap/ng-bootstrap": "^5.0.0-rc.1",
+    "@ngx-translate/core": "^11.0.1",
+    "bootstrap": "^4.1.1",
+    "ngx-toastr": "^10.2.0",
     "rxjs": "^6.5.2",
     "zone.js": "^0.9.1"
   },
