@@ -59,10 +59,17 @@ export class RegistrationComponent implements OnInit {
       this.registerForm.value.email,
       this.registerForm.value.username,
       this.registerForm.value.password
-    ).subscribe();
-    // after we send info to backend we can redirect to login
-    this.router.navigate([this.route.snapshot.queryParams.redirect || '/login'], { replaceUrl: true });
-    console.log('navigate back to login page after login created');
+    ).subscribe(
+      success => {
+        success.status === 200;
+        // after we send info to backend we can redirect to login
+        this.router.navigate([this.route.snapshot.queryParams.redirect || '/login'], { replaceUrl: true });
+        console.log('navigate back to login page after login created');
+      },
+      error => {
+        this.submitted = false;
+      }
+    );
   }
 
   createUser(email: string, username: string, password: string): Observable<any> {
