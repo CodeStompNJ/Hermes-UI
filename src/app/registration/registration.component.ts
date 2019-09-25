@@ -1,9 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule, FormsModule, FormControl } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '@env/environment';
 import { Observable, of } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-registration',
@@ -16,12 +17,15 @@ export class RegistrationComponent implements OnInit {
   error: string | undefined;
   isLoading = false;
   submitted = false;
+  errorType = '';
+  toastMessage = '';
 
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -36,6 +40,10 @@ export class RegistrationComponent implements OnInit {
         validator: this.MustMatch('password', 'confirmPassword')
       }
     );
+  }
+
+  showToaster(message: string) {
+    this.toastr.success(message);
   }
 
   get f() {
@@ -61,15 +69,24 @@ export class RegistrationComponent implements OnInit {
       this.registerForm.value.password
     ).subscribe(
       success => {
-        success.status === 200;
-        // after we send info to backend we can redirect to login
+        this.showToaster('User creation successful!');
+        console.log(success);
         this.router.navigate([this.route.snapshot.queryParams.redirect || '/login'], { replaceUrl: true });
         console.log('navigate back to login page after login created');
       },
       error => {
         this.submitted = false;
+        this.errorType = error.error.result;
+        if (this.errorType === 'unique_violation') {
+          this.toastMessage = 'Username taken. Please try again.';
+        } else {
+          this.toastMessage = 'Could not create user. Database error.';
+        }
+        this.showToaster(this.toastMessage);
+        console.log('create user fail = ' + error);
       }
     );
+    // after we send info to backend we can redirect to login
   }
 
   createUser(email: string, username: string, password: string): Observable<any> {
@@ -87,6 +104,10 @@ export class RegistrationComponent implements OnInit {
   onReset() {
     this.submitted = false;
     this.registerForm.reset();
+  }
+
+  goToLogin() {
+    this.router.navigate([this.route.snapshot.queryParams.redirect || '/login'], { replaceUrl: true });
   }
 
   private MustMatch(controlName: string, matchingControlName: string) {
