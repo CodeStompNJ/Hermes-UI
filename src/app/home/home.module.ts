@@ -7,9 +7,10 @@ import { CoreModule } from '@app/core';
 import { SharedModule } from '@app/shared';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
+import { ChatroomComponent } from '../chatroom/chatroom.component';
 
 @NgModule({
-  imports: [CommonModule, TranslateModule, CoreModule, SharedModule, HomeRoutingModule, FormsModule],
+  imports: [CommonModule, TranslateModule, CoreModule, SharedModule, HomeRoutingModule, FormsModule, ChatroomComponent],
   declarations: [HomeComponent]
 })
 export class HomeModule {}

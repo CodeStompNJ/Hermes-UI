@@ -1,7 +1,8 @@
 <div class="container-fluid">
   <div class="form text-center">
     <div class=" form form--window">
-      <div class="form form--message" *ngFor="let message of history">
+      <div class="form form--message" *ngFor="let message of History">
+        <ChatroomComponent></ChatroomComponent>
         <div class="form form__uid">
           {{ message.UserID }}
         </div>

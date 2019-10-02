@@ -6,6 +6,7 @@ import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 import { QuoteService } from './quote.service';
 import { ChatService } from './chat.service';
 import { Message } from './message';
+import { ChatroomComponent } from '../chatroom/chatroom.component';
 
 @Component({
   selector: 'app-home',
@@ -15,8 +16,10 @@ import { Message } from './message';
 export class HomeComponent implements OnInit {
   quote: string | undefined;
   isLoading = false;
-  history: any = []; // @TODO: think about renaming?
+  history: any = []; // @TODO: think about renaming? Make a class
   inputVar = ''; // Landing value for message <input>
+
+  chatroomObject: ChatroomComponent;
 
   socket$: WebSocketSubject<any>; // @todo: move to service
 
@@ -32,10 +35,10 @@ export class HomeComponent implements OnInit {
       }
     });
 
+    this.chatroomObject = new ChatroomComponent(1, undefined);
     // console.log('heck ME' + json);
-
     this.isLoading = true;
-    this.chatService
+    /*this.chatService
       .getHistory()
       .pipe(
         finalize(() => {
@@ -45,7 +48,7 @@ export class HomeComponent implements OnInit {
       .subscribe(messages => {
         // @TODO - make an message object
         this.history = messages; // setting the history values
-      });
+      });*/
   }
 
   /**
@@ -55,9 +58,12 @@ export class HomeComponent implements OnInit {
 
   messagePush(message: string) {
     // create a new message
-    const messageObj = new Message(1, message, 1, 'User');
-    this.history.push(messageObj);
-
+    // Message(1, message, getChatroom, getUser);
+    // make getChatroom and getCurrentUser fucntions
+    const messageObj = new Message(1, message, this.getCurrentRoom(), this.getUserID());
+    // this.history.push(messageObj);
+    this.chatroomObject.History.push(messageObj);
+    console.log(this.chatroomObject.History);
     // Set input to empty after sending text
     this.inputVar = '';
   }
@@ -76,5 +82,18 @@ export class HomeComponent implements OnInit {
     //   console.log('created id of message: ', id);
     // });
     this.socket$.next(message);
+  }
+
+  getUserID(): string {
+    // here we pull user data from cookie
+
+    return 'User';
+  }
+
+  getCurrentRoom(): number {
+    // based on the history we recive is the chatroom we're pulling from
+    // we can implement in history to have id associated with it which is the chatroomid
+
+    return 1;
   }
 }
