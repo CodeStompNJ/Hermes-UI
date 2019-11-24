@@ -9,6 +9,7 @@ import { map, catchError } from 'rxjs/operators';
 export class ChatService {
   constructor(private httpClient: HttpClient) {}
 
+  // defaulting to group 1 until we have more groups, later we should fail out here.
   getHistory(groupID = 1): Observable<any> {
     // returns object Object
     return this.httpClient
