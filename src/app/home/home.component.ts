@@ -71,10 +71,10 @@ export class HomeComponent implements OnInit {
    */
 
   postMessage(message: string) {
-    // this.messagePush(message);
-    // this.chatService.postMessage(message).subscribe(id => {
-    //   console.log('created id of message: ', id);
-    // });
-    this.socket$.next(message);
+    // TODO: get current groupID and userID when posting.
+    const groupID = 1;
+    const userID = 1;
+
+    this.socket$.next({ message, groupID, userID });
   }
 }
