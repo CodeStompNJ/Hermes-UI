@@ -9,11 +9,11 @@ import { map, catchError } from 'rxjs/operators';
 export class ChatService {
   constructor(private httpClient: HttpClient) {}
 
-  getHistory(): Observable<any> {
+  getHistory(groupID = 1): Observable<any> {
     // returns object Object
     return this.httpClient
       .cache()
-      .get('/history')
+      .get(`/history/${groupID}`)
       .pipe(
         map((body: any) => body), // @TODO: convert to message obect here
         catchError(() => of('Error, could not load history :-('))
