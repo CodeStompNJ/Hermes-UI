@@ -18,7 +18,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { RegistrationModule } from './registration/registration.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { ChatroomComponent } from './chatroom/chatroom.component';
 
 @NgModule({
   imports: [
@@ -40,7 +39,7 @@ import { ChatroomComponent } from './chatroom/chatroom.component';
     ToastrModule.forRoot(),
     AppRoutingModule // must be imported as the last module as it contains the fallback route
   ],
-  declarations: [AppComponent, ChatroomComponent],
+  declarations: [AppComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

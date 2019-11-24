@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ChatService } from '../home/chat.service';
 import { finalize } from 'rxjs/operators';
+import { Message } from '../home/message';
 
 @Component({
   selector: 'app-chatroom',
@@ -8,15 +9,23 @@ import { finalize } from 'rxjs/operators';
   styleUrls: ['./chatroom.component.scss']
 })
 export class ChatroomComponent implements OnInit {
-  ID: number;
+  @Input() ID: number;
   History: any = [];
   isLoading = false;
 
-  constructor(id: number, private chatService: ChatService) {
-    this.ID = id;
+  constructor(private chatService: ChatService) {
+    this.ngOnInit();
   }
 
   ngOnInit() {
+    console.log('start');
+    console.log(
+      this.chatService.getHistory().subscribe(messages => {
+        this.History = messages; // setting the history values
+      })
+    );
+    console.log('end');
+
     this.chatService
       .getHistory()
       .pipe(
@@ -25,9 +34,7 @@ export class ChatroomComponent implements OnInit {
         })
       )
       .subscribe(messages => {
-        // @TODO - make an message object
         this.History = messages; // setting the history values
       });
-    console.log('big brain ', this.History);
   }
 }

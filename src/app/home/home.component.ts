@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { finalize } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 
-import { QuoteService } from './quote.service';
 import { ChatService } from './chat.service';
 import { Message } from './message';
 import { ChatroomComponent } from '../chatroom/chatroom.component';
@@ -14,16 +13,15 @@ import { ChatroomComponent } from '../chatroom/chatroom.component';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  quote: string | undefined;
   isLoading = false;
   history: any = []; // @TODO: think about renaming? Make a class
   inputVar = ''; // Landing value for message <input>
 
-  chatroomObject: ChatroomComponent;
+  chatroomObjectSource: ChatroomComponent;
 
   socket$: WebSocketSubject<any>; // @todo: move to service
 
-  constructor(private quoteService: QuoteService, private chatService: ChatService) {}
+  constructor(private chatService: ChatService) {}
 
   ngOnInit() {
     this.socket$ = webSocket('ws://localhost:8000/ws'); // @todo move to environment variable
@@ -35,7 +33,7 @@ export class HomeComponent implements OnInit {
       }
     });
 
-    this.chatroomObject = new ChatroomComponent(1, undefined);
+    //this.chatroomObject = new ChatroomComponent(1, this.chatService);
     // console.log('heck ME' + json);
     this.isLoading = true;
     /*this.chatService
@@ -62,8 +60,8 @@ export class HomeComponent implements OnInit {
     // make getChatroom and getCurrentUser fucntions
     const messageObj = new Message(1, message, this.getCurrentRoom(), this.getUserID());
     // this.history.push(messageObj);
-    this.chatroomObject.History.push(messageObj);
-    console.log(this.chatroomObject.History);
+    this.chatroomObjectSource.History.push(messageObj);
+    console.log(this.chatroomObjectSource.History);
     // Set input to empty after sending text
     this.inputVar = '';
   }

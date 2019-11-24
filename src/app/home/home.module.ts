@@ -10,7 +10,7 @@ import { HomeComponent } from './home.component';
 import { ChatroomComponent } from '../chatroom/chatroom.component';
 
 @NgModule({
-  imports: [CommonModule, TranslateModule, CoreModule, SharedModule, HomeRoutingModule, FormsModule, ChatroomComponent],
-  declarations: [HomeComponent]
+  imports: [CommonModule, TranslateModule, CoreModule, SharedModule, HomeRoutingModule, FormsModule],
+  declarations: [HomeComponent, ChatroomComponent]
 })
 export class HomeModule {}
